@@ -26,10 +26,7 @@
   
   <style>
 
-
-
-
-//datatables  
+ 
   div.relative {
 	padding-right: 1%;
 }
@@ -262,7 +259,8 @@ tr.shown td.details-control {
   <p>Requires Login. Offer Information</p>  
 
   <br>  
-  <div class="table" style="visibility:hidden">
+  <!-- style="visibility:hidden"-->
+  <div class="table" >
   <table width="100%" class="display" id="example" cellspacing="0">
        <thead>
             <tr>
@@ -899,7 +897,12 @@ $("#cms_search_button").click(function(){
 
 
 $("#catalog_search_button").click(function(){
- $("#catalog div").css("visibility","visible").show();
+ //$("#catalog div").css("visibility","visible").show();
+
+$('#example').DataTable().clear().draw();
+ 
+$('#example').DataTable().ajax.url( 'assets/data.json' ).load();
+
 });
 
   
@@ -908,7 +911,9 @@ $("#catalog_search_button").click(function(){
   
   //datatable example
      var table = $('#example').DataTable({
-             "data": testdata.data,
+            //"data": testdata.data,
+              "ajax": "",
+        "deferRender": true,
              select:"single",
              "columns": [
                  {
